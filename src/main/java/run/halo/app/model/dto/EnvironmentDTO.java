@@ -1,6 +1,9 @@
 package run.halo.app.model.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import run.halo.app.model.enums.Mode;
 
 /**
@@ -10,6 +13,9 @@ import run.halo.app.model.enums.Mode;
  * @date 2019/5/4
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class EnvironmentDTO {
 
     private String database;

@@ -262,7 +262,11 @@ public class AdminServiceImpl implements AdminService {
 
         environmentDto.setMode(haloProperties.getMode());
 
-        return environmentDto;
+        return EnvironmentDTO.builder()
+            .startTime(ManagementFactory.getRuntimeMXBean().getStartTime())
+            .database(DATABASE_PRODUCT_NAME)
+            .version(HaloConst.HALO_VERSION)
+            .mode(haloProperties.getMode()).build();
     }
 
     @Override

@@ -459,10 +459,10 @@ public class BackupServiceImpl implements BackupService {
         try (Stream<Path> subPathStream = Files.list(exportedDataParentPath)) {
             return subPathStream
                 .filter(backupPath -> StringUtils
-                    .startsWithIgnoreCase(backupPath.getFileName().toString(),
-                        HALO_DATA_EXPORT_PREFIX))
+                    .startsWithIgnoreCase(backupPath.getFileName().toString(), HALO_DATA_EXPORT_PREFIX))
                 .map(backupPath -> buildBackupDto(DATA_EXPORT_BASE_URI, backupPath))
-                .sorted(Comparator.comparingLong(BackupDTO::getUpdateTime).reversed())
+                .sorted(Comparator.comparing(BackupDTO::getUpdateTime).reversed())
+                .sorted(Comparator.comparingLong(BackupDTO::getFileSize).reversed())
                 .collect(Collectors.toList());
         } catch (IOException e) {
             throw new ServiceException("Failed to fetch exported data", e);
